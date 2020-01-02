@@ -1,0 +1,24 @@
+@import '~variables';
+
+.input {
+  border: 1px solid $light-grey;
+  font-size: $font-md;
+  font-family: $sans-serif;
+  padding: $gap-md;
+  outline: 0;
+  border-radius: $radius;
+  transition: 0.2s;
+  background-color: $white;
+  width: 100%;
+
+  &:hover {
+    transition: 0.2s;
+    border-color: $grey;
+  }
+
+  &:focus {
+    border-bottom-color: $secondary;
+    border-bottom-width: 3px;
+    padding-bottom: calc(#{$gap-md} - 3px);
+  }
+}

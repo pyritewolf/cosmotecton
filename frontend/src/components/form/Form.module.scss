@@ -1,0 +1,11 @@
+@import '~variables';
+
+.root {
+  width: 100%;
+
+  > * {
+    margin-bottom: $gap-md;
+
+    &:last-child { margin: 0; }
+  }
+}
