@@ -7,4 +7,11 @@ RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
+
+# copy entrypoint.sh
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+
 ADD . /code/
+
+# run entrypoint.sh
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
