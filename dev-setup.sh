@@ -1,0 +1,1 @@
+docker run --name cosmotecton_dev -p 5432:5432 -it db

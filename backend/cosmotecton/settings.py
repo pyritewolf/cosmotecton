@@ -18,14 +18,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bomdedrjslz^0t=ryu2!7cv$_(m2ag-q8m%thwg53x#f_-pnh1'
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -37,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +48,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'src.urls'
+ROOT_URLCONF = 'cosmotecton.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +66,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'src.wsgi.application'
+WSGI_APPLICATION = 'cosmotecton.wsgi.application'
 
 
 # Database
@@ -75,8 +74,12 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+        "USER": os.environ.get("SQL_USER", "builder"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "dev-builder-pw"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
 
