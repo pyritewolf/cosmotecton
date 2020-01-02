@@ -4,7 +4,7 @@
   border: 1px solid $light-grey;
   font-size: $font-md;
   font-family: $sans-serif;
-  padding: $gap-md;
+  padding: calc(#{$gap-md} - 1px);
   outline: 0;
   border-radius: $radius;
   transition: 0.2s;
@@ -16,9 +16,18 @@
     border-color: $grey;
   }
 
+  &.invalid { border-color: $red; }
+
   &:focus {
+    border-color: $grey;
     border-bottom-color: $secondary;
     border-bottom-width: 3px;
     padding-bottom: calc(#{$gap-md} - 3px);
   }
+}
+
+.error {
+  font-size: $font-sm;
+  color: $red;
+  margin-top: $gap-xs;
 }

@@ -14,12 +14,15 @@
   outline: 0;
   letter-spacing: 1px;
 
-  &.block {
-    width: 100%;
-  }
+  &.block { width: 100%; }
 
   &:hover {
     transition: 0.2s;
     background-color: mix($black, $primary, 20%);
+  }
+
+  &:disabled {
+    background-color: $grey;
+    cursor: default;
   }
 }

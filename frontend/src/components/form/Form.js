@@ -8,17 +8,28 @@ function Form({children, fields}) {
     return vals
   }, {}));
 
-  const onFieldChange = (fieldKey) => {
-    return (newValue) => {
-      let newValues = {...values};
-      newValues[fieldKey] = newValue.target.value;
-      setValues(newValues)
-    }
-  };
+  const [errors, setErrors] = useState(fields.reduce((errs, field) => {
+    errs[field.name] = null;
+    return errs
+  }, {}));
+
+  const onFieldChange = fieldKey => 
+    event => {
+      let newValue = event.target.value;
+      setValues({...values, [fieldKey]: newValue});
+      const field = fields.find(f => f.name === fieldKey);
+      if (field.required && !newValue)
+        return setErrors({...errors, [fieldKey]: 'We need this info!'});
+      if (field.validate === undefined) 
+        return setErrors({...errors, [fieldKey]: null});
+      const errMsg = field.validate(newValue);
+      if (errMsg)
+        return setErrors({...errors, [fieldKey]: errMsg});
+    };
 
   return (
     <form className={styles.root}>
-      {children(values, onFieldChange)}
+      {children(values, onFieldChange, errors, !Object.values(errors).some(err => err !== null))}
     </form>
   );
 }

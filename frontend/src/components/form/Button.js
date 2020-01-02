@@ -3,8 +3,9 @@ import classNames from 'classnames';
 import styles from './Button.module.scss';
 
 
-function Button({children, type = 'button', appearance = "default", onClick}) {
+function Button({children, type = 'button', appearance = "default", disabled, onClick}) {
   return <button
+    disabled={disabled}
     type={type}
     className={classNames(styles.root, styles[appearance])}
     onClick={onClick}>
