@@ -15,6 +15,7 @@ services:
       - SQL_PASSWORD=${SQL_PASSWORD}
       - SQL_HOST=${SQL_HOST}
       - SQL_PORT=${SQL_PORT}
+      - DJANGO_CORS_WHITELIST=${DJANGO_CORS_WHITELIST}
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - ./backend:/code
@@ -36,6 +37,7 @@ services:
       - api
     environment:
       - NODE_PATH=src/
+      - REACT_APP_API=http://localhost:8000
   db:
     image: postgres
     ports:

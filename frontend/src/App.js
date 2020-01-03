@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 
 import LogIn from './views/LogIn'
-import logo from './logo.svg';
 import styles from  './App.module.scss';
 
 

@@ -1,4 +1,6 @@
 Django==2.2
 psycopg2-binary
 djangorestframework
+djangorestframework_simplejwt
 django-filter
+django-cors-headers

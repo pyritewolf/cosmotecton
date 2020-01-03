@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
-import styles from './LogIn.module.scss';
 import { Form, Input, Button } from 'components/form';
+import {logIn} from 'api/auth'
+import styles from './LogIn.module.scss';
 
 function LogIn() {
   return (
@@ -11,7 +12,7 @@ function LogIn() {
           <Fragment>
             <Input placeholder='Username' value={values.username} onChange={onChange('username')} error={errors.username} />
             <Input placeholder='Your super safe password' value={values.password} onChange={onChange('password')} error={errors.password} type='password'/>
-            <Button appearance="block" disabled={!isValid}>Log in</Button>
+            <Button appearance="block" disabled={!isValid} onClick={() => logIn(values.username, values.password)}>Log in</Button>
           </Fragment>
         )}
       </Form>
