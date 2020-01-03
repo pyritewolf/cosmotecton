@@ -6,6 +6,17 @@ export const logIn = async (username, password) => {
       'Content-Type': 'application/json'
     }
   });
-  console.log(tokens);
-  return tokens.json();
+
+  const {refresh} = await tokens.json();
+
+  const accessToken = await fetch(`${process.env.REACT_APP_API}/api/token/refresh/`, {
+    method: 'POST',
+    body: JSON.stringify({refresh}),
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  });
+
+  const {access} = await accessToken.json();
+  return {token: access}
 }

@@ -1,9 +1,17 @@
+@import '~variables';
+
 .root {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  flex-direction: column;
-  width: 300px;
   margin: auto;
+
+  .card {
+    width: 300px;
+    background-color: $white;
+    border-radius: $radius;
+    padding: $gap-md;
+    text-align: center;
+  }
 }
