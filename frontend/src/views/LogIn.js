@@ -17,7 +17,7 @@ function LogIn({dispatch}) {
             <Fragment>
               <Input placeholder='Username' value={values.username} onChange={onChange('username')} error={errors.username} />
               <Input placeholder='Your super safe password' value={values.password} onChange={onChange('password')} error={errors.password} type='password'/>
-              <Button appearance="block" disabled={!isValid} onClick={onSubmit(values.username, values.password)}>Log in</Button>
+              <Button appearance="block" disabled={!isValid} onClick={onSubmit(values.username, values.password)} type="submit">Log in</Button>
             </Fragment>
           )}
         </Form>
