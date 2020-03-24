@@ -1,0 +1,18 @@
+@import '~variables';
+
+.root {
+    height: $gap-md * 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $white;
+    box-shadow: 0 0 $gap-md rgba($dark-grey, 0.5);
+
+    & > * {
+        padding: $gap-md;
+    }
+}
+
+.root + * {
+    padding: $gap-md;
+}
