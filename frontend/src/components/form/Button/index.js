@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import styles from './Button.module.scss';
+import styles from './styles.module.scss';
 
 
 function Button({children, type = 'button', appearance = "default", disabled, onClick}) {

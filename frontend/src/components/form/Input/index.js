@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import styles from './Input.module.scss';
+import styles from './styles.module.scss';
 
 
 function Input({placeholder, type = 'text', value  = '', onChange, error}) {

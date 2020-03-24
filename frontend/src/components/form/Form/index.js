@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Form.module.scss';
+import styles from './styles.module.scss';
 
 
 function Form({children, fields}) {
