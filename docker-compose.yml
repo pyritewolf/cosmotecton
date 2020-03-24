@@ -36,8 +36,8 @@ services:
     depends_on:
       - api
     environment:
-      - NODE_PATH=src/
-      - REACT_APP_API=http://localhost:8000
+      - REACT_APP_API=http://127.0.0.1:8000
+    tty: true
   db:
     image: postgres
     ports:

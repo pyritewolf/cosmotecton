@@ -2,11 +2,10 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
-import LogIn from './views/LogIn'
+import LogIn from 'views/LogIn'
 import styles from  './App.module.scss';
 
 
