@@ -1,18 +1,25 @@
 @import '~variables';
+@import '~grid';
+
+$navbar-height: $gap-md * 4;
 
 .root {
-    height: $gap-md * 4;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    height: $navbar-height;
     background-color: $white;
     box-shadow: 0 0 $gap-md rgba($dark-grey, 0.5);
-
-    & > * {
-        padding: $gap-md;
-    }
 }
+
+.grid {
+    @include grid;
+    min-height: 100%;
+    align-items: center;
+
+    & > * { @include col(6); }
+}
+
+.user { text-align: right; }
 
 .root + * {
     padding: $gap-md;
+    min-height: calc(100vh - #{$navbar-height} - #{$gap-md} * 2);
 }

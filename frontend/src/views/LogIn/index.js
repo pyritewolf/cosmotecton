@@ -1,14 +1,16 @@
 import React, {Fragment} from 'react';
 import { connect } from 'react-redux';
+
 import { Form, Input, Button } from 'components/form';
-import {logIn} from 'actions/auth';
+import { logIn } from 'actions/auth';
+
 import styles from './styles.module.scss';
 
 function LogIn({dispatch}) {
   const onSubmit = (username, password) => 
     e => {
-      e.preventDefault()
-      dispatch(logIn(username, password))
+      e.preventDefault();
+      dispatch(logIn(username, password));
     };
 
   return (

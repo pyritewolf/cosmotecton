@@ -1,0 +1,31 @@
+@import '~variables.scss';
+
+@mixin grid {
+  max-width: 1024px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+  grid-gap: $gap-lg;
+  justify-content: center;
+
+  & > * {
+    grid-column: col-start / span 12;
+  }
+
+  @media #{$mobile} {
+    max-width: $mobile-breakpoint;
+    grid-template-columns: repeat(6, [col-start] 1fr);
+
+    & > * {
+      grid-column: col-start / span 6;
+    }
+  }
+}
+
+@mixin col($col, $offset: null) {
+  grid-column: span $col !important;
+
+  @if ($offset) {
+    grid-column: ($offset + 1) / span $col !important;
+  }
+}

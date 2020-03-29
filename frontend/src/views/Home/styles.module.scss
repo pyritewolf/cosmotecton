@@ -1,0 +1,15 @@
+@import '~variables';
+@import '~grid';
+
+.noWorlds {
+    @include grid;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    & .content {
+        @include col(4, 4);
+
+        & > * { margin: $gap-sm 0; }
+    }
+}

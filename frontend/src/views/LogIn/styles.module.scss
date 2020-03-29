@@ -1,14 +1,14 @@
 @import '~variables';
+@import '~grid';
 
 .root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include grid;
   height: 100vh;
   margin: auto;
+  align-items: center;
 
   .card {
-    width: 300px;
+    @include col(4, 4);
     background-color: $white;
     border-radius: $radius;
     padding: $gap-md;

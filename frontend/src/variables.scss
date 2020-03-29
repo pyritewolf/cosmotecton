@@ -11,6 +11,10 @@ $gap-sm: 0.8rem;
 $gap-md: 1.6rem;
 $gap-lg: 2.4rem;
 
+// BREAKPOINTS
+$mobile-breakpoint: 720px;
+$mobile: (max-width: $mobile-breakpoint);
+
 // PALETTE
 $primary: #BA01FF;
 $secondary: #228DFF;
@@ -27,3 +31,7 @@ $black: black;
 
 // VARIOUS
 $radius: 2px;
+
+:export {
+  mobile: $mobile-breakpoint;
+}

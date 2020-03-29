@@ -1,7 +1,7 @@
-@import '~variables.scss';
+@import '~variables';
 
 .root {
-  font-size: 1.4rem;
+  font-size: $font-md;
   background-color: $lighter-grey;
   min-height: 100vh;
 }
