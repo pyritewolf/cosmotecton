@@ -7,11 +7,8 @@
   margin: auto;
   align-items: center;
 
-  .card {
+  & > * {
     @include col(4, 4);
-    background-color: $white;
-    border-radius: $radius;
-    padding: $gap-md;
     text-align: center;
   }
 }

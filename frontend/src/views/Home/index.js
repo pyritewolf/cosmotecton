@@ -1,21 +1,28 @@
-import React, { Fragment } from 'react';
+import React, {Fragment, useState} from 'react';
 import { connect, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
-import { NavBar } from 'components/general';
+import { NavBar, Dialog } from 'components/general';
 import { Button } from 'components/form';
 
 import styles from './styles.module.scss';
 
 function Home() {
   const worlds = useSelector(state => state.worlds)
+  const [isWorldCreationOpen, setIsWorldCreationOpen] = useState(false);
+  const closeWorldCreation = () => {
+    setIsWorldCreationOpen(false);
+  }
 
-  const noWorlds = () => <div className={styles.content}>
-    <img src={`${process.env.PUBLIC_URL}/images/createWorld.svg`} alt="Create a world!" />
-    <h2>Welcome!</h2>
-    <p>It looks like you haven't created any worlds yet.</p>
-    <Button>Let's start</Button>
-  </div>;
+  const noWorlds = () => <Fragment>
+    <div className={styles.content}>
+      <img src={`${process.env.PUBLIC_URL}/images/createWorld.svg`} alt="Create a world!" />
+      <h2>Welcome!</h2>
+      <p>It looks like you haven't created any worlds yet.</p>
+      <Button onClick={() => setIsWorldCreationOpen(true)}>Let's start</Button>
+    </div>
+    <Dialog open={isWorldCreationOpen} onClose={closeWorldCreation}>Hey</Dialog>
+  </Fragment>;
 
   return (
     <NavBar>

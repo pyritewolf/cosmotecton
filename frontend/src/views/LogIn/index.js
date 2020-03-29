@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import { connect } from 'react-redux';
 
 import { Form, Input, Button } from 'components/form';
+import { Card } from 'components/general';
 import { logIn } from 'actions/auth';
 
 import styles from './styles.module.scss';
@@ -15,7 +16,7 @@ function LogIn({dispatch}) {
 
   return (
     <div className={styles.root}>
-      <div className={styles.card}>
+      <Card>
         <h1>Log in</h1>
         <Form fields={[{name: 'username', required: true}, {name: 'password', required: true}]}>
           {(values, onChange, errors, isValid) => (
@@ -26,7 +27,7 @@ function LogIn({dispatch}) {
             </Fragment>
           )}
         </Form>
-      </div>
+      </Card>
     </div>
   );
 }

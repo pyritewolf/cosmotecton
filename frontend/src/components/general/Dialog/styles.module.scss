@@ -1,0 +1,52 @@
+@import '~variables';
+@import '~grid';
+
+.root {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($dark-grey, 0.5);
+    
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0s, opacity 0.3s ease;
+    opacity: 0;
+    
+    &.open {
+        max-height: 100vh;
+        padding: $gap-lg;
+        opacity: 1;
+    }
+    
+    &.display {
+        transition: opacity 0.3s ease, max-height 0 ease;
+        opacity: 0;
+        max-height: 100vh;
+        padding: $gap-lg;
+    }
+}
+
+.grid { 
+    @include grid;
+    height: 100%;
+    align-items: center;
+    
+    & > * {
+        @include col(6, 3);
+        position: relative;
+        overflow: auto;
+
+        &.cols4 { @include col(4, 4); }
+        &.cols8 { @include col(8, 2); }
+        &.cols12 { @include col(12); }
+    }
+}
+
+.icon {
+    position: absolute;
+    top: $gap-sm;
+    right: $gap-sm;
+    cursor: pointer;
+}
