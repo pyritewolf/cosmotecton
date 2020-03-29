@@ -4,4 +4,6 @@
     background-color: $white;
     border-radius: $radius;
     padding: $gap-lg;
+
+    & * + * { margin-top: $gap-sm; }
 }

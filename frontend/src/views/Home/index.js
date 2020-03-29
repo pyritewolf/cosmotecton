@@ -3,7 +3,7 @@ import { connect, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 import { NavBar, Dialog } from 'components/general';
-import { Button } from 'components/form';
+import { Button, Form, Input } from 'components/form';
 
 import styles from './styles.module.scss';
 
@@ -14,6 +14,12 @@ function Home() {
     setIsWorldCreationOpen(false);
   }
 
+  const onSubmitWorld = (world) => 
+  e => {
+    e.preventDefault();
+    console.log(world)
+  };
+
   const noWorlds = () => <Fragment>
     <div className={styles.content}>
       <img src={`${process.env.PUBLIC_URL}/images/createWorld.svg`} alt="Create a world!" />
@@ -21,7 +27,18 @@ function Home() {
       <p>It looks like you haven't created any worlds yet.</p>
       <Button onClick={() => setIsWorldCreationOpen(true)}>Let's start</Button>
     </div>
-    <Dialog open={isWorldCreationOpen} onClose={closeWorldCreation}>Hey</Dialog>
+    <Dialog open={isWorldCreationOpen} onClose={closeWorldCreation}>
+      <h2>This is your starting spot</h2>
+      <p>Choose a name for your world. Don't worry, you can come back and change it later, and you'll be the only one who can access it for now.</p>
+      <Form fields={[{name: 'name', required: true}]}>
+          {(values, onChange, errors, isValid) => (
+            <Fragment>
+              <Input placeholder='A cool name' value={values.name} onChange={onChange('name')} error={errors.name} />
+              <Button appearance="block" disabled={!isValid} onClick={onSubmitWorld(values.name)} type="submit">Create this world</Button>
+            </Fragment>
+          )}
+        </Form>
+    </Dialog>
   </Fragment>;
 
   return (

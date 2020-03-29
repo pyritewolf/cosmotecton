@@ -37,6 +37,7 @@
         @include col(6, 3);
         position: relative;
         overflow: auto;
+        text-align: left;
 
         &.cols4 { @include col(4, 4); }
         &.cols8 { @include col(8, 2); }
