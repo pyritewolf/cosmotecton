@@ -12,7 +12,7 @@ function NavBar({children}) {
         <div className={styles.root}>
             <h1>Cosmotecton</h1>
             <div className={styles.user}>
-                {auth.token}
+                {auth.username}
             </div>
         </div>
         {children}

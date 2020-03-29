@@ -9,7 +9,7 @@ function Home() {
   return (
     <NavBar>
       <div className={styles.root}>
-        Welcome!
+        <h2>Welcome!</h2>
       </div>
     </NavBar>
   );

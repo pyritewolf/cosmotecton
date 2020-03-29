@@ -18,5 +18,17 @@ export const logIn = async (username, password) => {
   });
 
   const {access} = await accessToken.json();
-  return {token: access}
+
+  const userRequest = await fetch(`${process.env.REACT_APP_API}/profile/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${access}`
+    }
+  });
+  const [user] = await userRequest.json();
+  return {
+    ...user,
+    token: access
+  }
 }
