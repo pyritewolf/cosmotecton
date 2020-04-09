@@ -2,22 +2,24 @@ import React, {Fragment, useState} from 'react';
 import { connect, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
-import { NavBar, Dialog } from 'components/general';
+import { saveWorld } from 'actions/worlds';
+import { NavBar, Dialog, Card } from 'components/general';
 import { Button, Form, Input } from 'components/form';
 
 import styles from './styles.module.scss';
 
-function Home() {
+function Home({dispatch}) {
+  // fetchWorlds()
   const worlds = useSelector(state => state.worlds)
   const [isWorldCreationOpen, setIsWorldCreationOpen] = useState(false);
   const closeWorldCreation = () => {
     setIsWorldCreationOpen(false);
   }
 
-  const onSubmitWorld = (world) => 
+  const onSubmitWorld = (name) => 
   e => {
     e.preventDefault();
-    console.log(world)
+    dispatch(saveWorld({name}));
   };
 
   const noWorlds = () => <Fragment>
@@ -44,7 +46,11 @@ function Home() {
   return (
     <NavBar>
       <div className={classNames(styles.root, !worlds.length && styles.noWorlds)}>
-        {worlds.length ? 'you have worlds' : noWorlds()}
+        {worlds.length ? <div className={styles.worlds}>
+          {worlds.map(world => <Card>
+            <h2>{world.name}</h2>
+          </Card>)}
+        </div> : noWorlds()}
       </div>
     </NavBar>
   );

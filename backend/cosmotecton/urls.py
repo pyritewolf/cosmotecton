@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from rest_framework_simplejwt import views as jwt_views
 from .views import UserList, UserIdViewSet, UserDetail
+from worlds.views import  WorldViewSet
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -21,6 +22,8 @@ class UserViewSet(viewsets.ModelViewSet):
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'profile', UserIdViewSet, basename="UserId")
+# router.register(r'api/world', WorldViewSet, basename="world")
+router.register(r'api/world', WorldViewSet, basename="World")
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -31,4 +34,5 @@ urlpatterns = [
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('users/', UserList.as_view()),
     path('users/<int:pk>/', UserDetail.as_view()),
+    # path('api/', include('worlds.urls')),
 ]

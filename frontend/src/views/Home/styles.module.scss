@@ -13,3 +13,7 @@
         & > * { margin: $gap-sm 0; }
     }
 }
+
+.worlds {
+    @include grid;
+}
