@@ -1,15 +1,14 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import { connect, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
-import { saveWorld } from 'actions/worlds';
+import { saveWorld, fetchWorlds } from 'actions/worlds';
 import { NavBar, Dialog, Card } from 'components/general';
 import { Button, Form, Input } from 'components/form';
 
 import styles from './styles.module.scss';
 
 function Home({dispatch}) {
-  // fetchWorlds()
   const worlds = useSelector(state => state.worlds)
   const [isWorldCreationOpen, setIsWorldCreationOpen] = useState(false);
   const closeWorldCreation = () => {
@@ -21,6 +20,10 @@ function Home({dispatch}) {
     e.preventDefault();
     dispatch(saveWorld({name}));
   };
+
+  useEffect(() => {
+    dispatch(fetchWorlds())
+  }, [])
 
   const noWorlds = () => <Fragment>
     <div className={styles.content}>
@@ -47,9 +50,11 @@ function Home({dispatch}) {
     <NavBar>
       <div className={classNames(styles.root, !worlds.length && styles.noWorlds)}>
         {worlds.length ? <div className={styles.worlds}>
-          {worlds.map(world => <Card>
-            <h2>{world.name}</h2>
-          </Card>)}
+          {worlds.map(world => 
+            <Card key={`world-${world.id}`} hoverable>
+              <h2>{world.name} <span className={classNames(styles.badge, world.public && styles.public)}>{world.public ? "Public" : "Private"}</span></h2>
+            </Card>
+          )}
         </div> : noWorlds()}
       </div>
     </NavBar>
