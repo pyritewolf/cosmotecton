@@ -16,5 +16,5 @@
         }
     }
 
-    & * + * { margin-top: $gap-sm; }
+    & > * + * { margin-top: $gap-sm; }
 }

@@ -1,5 +1,10 @@
 @import '~variables';
 
+.icon {
+  font-size: $font-lg;
+  margin-right: $gap-sm;
+}
+
 .root {
   background-color: $primary;
   color: $white;
@@ -13,16 +18,60 @@
   transition: 0.2s;
   outline: 0;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  &.block { width: 100%; }
-
+  
   &:hover {
     transition: 0.2s;
     background-color: mix($black, $primary, 20%);
   }
-
+  
   &:disabled {
     background-color: $grey;
     cursor: default;
+  }
+
+  // appearances
+  &.appearance-block { width: 100%; }
+
+  // sizes
+  &.size-sm { 
+    padding: $gap-sm;
+    font-size: $font-xs;
+
+    & .icon { font-size: $font-md; }
+  }
+
+  // color
+  &.color-secondary {
+    background-color: $secondary;
+    &:hover { background-color: mix($black, $secondary, 20%); }
+  }
+  &.color-grey {
+    background-color: $grey;
+    &:hover { background-color: mix($black, $grey, 20%); }
+  }
+}
+
+.hoverable {
+  & .icon {
+    margin: 0;
+    transition: 0.2s;
+  }
+  & .text {
+    transition: 0.2s;
+    overflow: hidden;
+    width: fit-content;
+    white-space: nowrap;
+    max-width: 0;
+  }
+
+  &:hover{
+    & .text {
+      max-width: 300px;
+    }
+    & .icon {  margin-right: $gap-sm; }
   }
 }

@@ -32,31 +32,44 @@ function Home({dispatch}) {
       <p>It looks like you haven't created any worlds yet.</p>
       <Button onClick={() => setIsWorldCreationOpen(true)}>Let's start</Button>
     </div>
-    <Dialog open={isWorldCreationOpen} onClose={closeWorldCreation}>
-      <h2>This is your starting spot</h2>
-      <p>Choose a name for your world. Don't worry, you can come back and change it later, and you'll be the only one who can access it for now.</p>
-      <Form fields={[{name: 'name', required: true}]}>
-          {(values, onChange, errors, isValid) => (
-            <Fragment>
-              <Input placeholder='A cool name' value={values.name} onChange={onChange('name')} error={errors.name} />
-              <Button appearance="block" disabled={!isValid} onClick={onSubmitWorld(values.name)} type="submit">Create this world</Button>
-            </Fragment>
-          )}
-        </Form>
-    </Dialog>
   </Fragment>;
 
   return (
     <NavBar>
       <div className={classNames(styles.root, !worlds.length && styles.noWorlds)}>
-        {worlds.length ? <div className={styles.worlds}>
-          {worlds.map(world => 
-            <Card key={`world-${world.id}`} hoverable>
-              <h2>{world.name} <span className={classNames(styles.badge, world.public && styles.public)}>{world.public ? "Public" : "Private"}</span></h2>
-            </Card>
-          )}
-        </div> : noWorlds()}
+        {worlds.length ? <Fragment>
+          <div className={styles.add}>
+            <Button
+              color="grey"
+              icon={<i className={classNames('las','la-globe')}></i>}
+              onClick={() => setIsWorldCreationOpen(true)}>
+                Add world
+              </Button>
+          </div>
+          <div className={styles.worlds}>
+            {worlds.map(world => 
+              <Card key={`world-${world.id}`} hoverable>
+                <h2>{world.name} <span className={classNames(styles.badge, world.public && styles.public)}>{world.public ? "Public" : "Private"}</span></h2>
+                <div className={styles.actions}>
+                  <Button size="sm" color="grey" icon={<i className={classNames('las','la-torah')}></i>}>Add story</Button>
+                </div>
+              </Card>
+            )}
+          </div>
+        </Fragment> : noWorlds()}
       </div>
+      <Dialog open={isWorldCreationOpen} onClose={closeWorldCreation}>
+        <h2>This is your starting spot</h2>
+        <p>Choose a name for your world. Don't worry, you can come back and change it later, and you'll be the only one who can access it for now.</p>
+        <Form fields={[{name: 'name', required: true}]}>
+            {(values, onChange, errors, isValid) => (
+              <Fragment>
+                <Input placeholder='A cool name' value={values.name} onChange={onChange('name')} error={errors.name} />
+                <Button appearance="block" disabled={!isValid} onClick={onSubmitWorld(values.name)} type="submit">Create this world</Button>
+              </Fragment>
+            )}
+          </Form>
+      </Dialog>
     </NavBar>
   );
 }
