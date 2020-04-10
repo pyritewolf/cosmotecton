@@ -17,7 +17,31 @@ $navbar-height: $gap-md * 4;
     & > * { @include col(6); }
 }
 
-.user { text-align: right; }
+.user {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    & .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary;
+        border: 6px double $white;
+        width: $navbar-height / 1.5;
+        height: $navbar-height / 1.5;
+        border-radius: 50%;
+        color: $white;
+        font-size: $font-lg;
+        margin-left: $gap-sm;
+        transition: 0.3s;
+    }
+
+    &:hover .avatar {
+        transition: 0.3s;
+        background-color: $secondary;
+    }
+}
 
 .root + * {
     padding: $gap-md;

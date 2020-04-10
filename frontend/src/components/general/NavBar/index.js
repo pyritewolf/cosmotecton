@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
+import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
@@ -13,6 +14,9 @@ function NavBar({children}) {
                 <h1>Cosmotecton</h1>
                 <div className={styles.user}>
                     {auth.username}
+                    <div className={styles.avatar}>
+                        <i className={classNames('las', 'la-user-alt')} />
+                    </div>
                 </div>
             </div>
         </div>

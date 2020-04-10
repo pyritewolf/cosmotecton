@@ -1,34 +1,34 @@
+import api from './utils';
+
 export const logIn = async (username, password) => {
-  const tokens = await fetch(`${process.env.REACT_APP_API}/api/token/`, {
+  const tokens = await api(`api/token/`, {
     method: 'POST',
     body: JSON.stringify({username, password}),
-    headers:{
-      'Content-Type': 'application/json'
-    }
   });
-
-  const {refresh} = await tokens.json();
-
-  const accessToken = await fetch(`${process.env.REACT_APP_API}/api/token/refresh/`, {
-    method: 'POST',
-    body: JSON.stringify({refresh}),
-    headers:{
-      'Content-Type': 'application/json'
-    }
-  });
-
-  const {access} = await accessToken.json();
-
-  const userRequest = await fetch(`${process.env.REACT_APP_API}/profile/`, {
+  
+  const [user] = await api(`profile/`, {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${access}`
-    }
+    headers: { 'Authorization': `Bearer ${tokens.access}`}
   });
-  const [user] = await userRequest.json();
   return {
     ...user,
-    token: access
+    token: tokens.access,
+    refresh: tokens.refresh,
+  }
+}
+
+export const refreshToken = async (user) => {
+  const accessToken = await fetch(`${process.env.REACT_APP_API}/api/token/refresh/`, {
+    method: 'POST',
+    body: JSON.stringify({refresh: user.refresh}),
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  });
+
+  const {access, refresh} = await accessToken.json();
+  return {
+    token: access,
+    refresh,
   }
 }

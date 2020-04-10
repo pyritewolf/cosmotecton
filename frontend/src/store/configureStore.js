@@ -2,8 +2,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from 'reducers';
+import { loadState } from './localStorage';
 
-export default function configureStore(initialState) {
+function configureStore(initialState) {
   const middleware = [];
   const enhancers = [];
   middleware.push(thunk);
@@ -29,3 +30,6 @@ export default function configureStore(initialState) {
 
   return createStore(rootReducer, initialState, enhancer);
 }
+
+const store = configureStore(loadState())
+export default store;

@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { throttle } from 'lodash';
 
-import { loadState, saveState } from 'store/localStorage';
-import configureStore from 'store/configureStore';
+import store from 'store/configureStore';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
+import { saveState } from 'store/localStorage';
 
-const store = configureStore(loadState());
 store.subscribe(
   throttle(() => {
     saveState({
