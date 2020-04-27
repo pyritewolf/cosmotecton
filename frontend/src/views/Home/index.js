@@ -3,6 +3,7 @@ import { connect, useSelector } from 'react-redux';
 import classNames from 'classnames';
 
 import { saveWorld, fetchWorlds } from 'actions/worlds';
+import { createStory } from 'actions/story';
 import { NavBar, Dialog, Card } from 'components/general';
 import { Button, Form, Input } from 'components/form';
 
@@ -19,23 +20,25 @@ function Home({dispatch}) {
   e => {
     e.preventDefault();
     dispatch(saveWorld({name}));
+    closeWorldCreation();
   };
 
   useEffect(() => {
     dispatch(fetchWorlds())
-  }, [])
+  }, [dispatch])
 
   const noWorlds = () => <Fragment>
     <div className={styles.content}>
       <img src={`${process.env.PUBLIC_URL}/images/createWorld.svg`} alt="Create a world!" />
       <h2>Welcome!</h2>
       <p>It looks like you haven't created any worlds yet.</p>
-      <Button onClick={() => setIsWorldCreationOpen(true)}>Let's start</Button>
+      <Button appearance="block" onClick={() => setIsWorldCreationOpen(true)}>Let's start</Button>
     </div>
   </Fragment>;
 
   return (
-    <NavBar>
+    <Fragment>
+    <NavBar/>
       <div className={classNames(styles.root, !worlds.length && styles.noWorlds)}>
         {worlds.length ? <Fragment>
           <div className={styles.add}>
@@ -51,7 +54,7 @@ function Home({dispatch}) {
               <Card key={`world-${world.id}`} hoverable>
                 <h2>{world.name} <span className={classNames(styles.badge, world.public && styles.public)}>{world.public ? "Public" : "Private"}</span></h2>
                 <div className={styles.actions}>
-                  <Button size="sm" color="grey" icon={<i className={classNames('las','la-torah')}></i>}>Add story</Button>
+                  <Button size="sm" color="grey" icon={<i className={classNames('las','la-torah')}></i>} onClick={() => dispatch(createStory(world))}>Add story</Button>
                 </div>
               </Card>
             )}
@@ -70,7 +73,7 @@ function Home({dispatch}) {
             )}
           </Form>
       </Dialog>
-    </NavBar>
+    </Fragment>
   );
 }
 

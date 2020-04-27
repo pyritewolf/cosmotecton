@@ -7,13 +7,13 @@ export const setWorlds = (worlds) => async (dispatch) => {
   dispatch({ type: SET_WORLDS, payload: worlds });
 };
 
-export const fetchWorlds = () => async (dispatch, getState) => {
-  const worlds = await fetchWorldsAPI(getState().auth);
+export const fetchWorlds = () => async (dispatch) => {
+  const worlds = await fetchWorldsAPI();
   dispatch({ type: SET_WORLDS, payload: worlds });
 };
 
-export const saveWorld = (worldDTO) => async (dispatch, getState) => {
-  const world = await saveWorldAPI(worldDTO, getState().auth);
+export const saveWorld = (worldDTO) => async (dispatch) => {
+  const world = await saveWorldAPI(worldDTO);
   dispatch({ type: SET_WORLDS, payload: [world] });
 };
 

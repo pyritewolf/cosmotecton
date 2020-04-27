@@ -5,10 +5,12 @@ import store from 'store/configureStore'
 const api = async (path, payload = {}) => {
     const { auth } = await store.getState();
     const fullPayload = {
+        method: 'GET',
+        ...payload,
         headers: {
             'Content-Type': 'application/json',
+            ...payload.headers,
         },
-        ...payload,
     };
     if (auth && auth.token) fullPayload.headers['Authorization'] = `Bearer ${auth.token}`;
 

@@ -7,7 +7,6 @@ export const logIn = async (username, password) => {
   });
   
   const [user] = await api(`profile/`, {
-    method: 'GET',
     headers: { 'Authorization': `Bearer ${tokens.access}`}
   });
   return {

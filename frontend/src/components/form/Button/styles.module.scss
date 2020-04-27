@@ -12,7 +12,7 @@
   font-weight: bold;
   text-transform: uppercase;
   padding: $gap-md;
-  border: none;
+  border: 2px solid $primary;
   border-radius: $radius;
   cursor: pointer;
   transition: 0.2s;
@@ -26,15 +26,13 @@
   &:hover {
     transition: 0.2s;
     background-color: mix($black, $primary, 20%);
+    border-color: mix($black, $primary, 20%);
   }
   
   &:disabled {
     background-color: $grey;
     cursor: default;
   }
-
-  // appearances
-  &.appearance-block { width: 100%; }
 
   // sizes
   &.size-sm { 
@@ -47,11 +45,39 @@
   // color
   &.color-secondary {
     background-color: $secondary;
-    &:hover { background-color: mix($black, $secondary, 20%); }
+    border-color: $secondary;
+    &:hover {
+      background-color: mix($black, $secondary, 20%);
+      border-color: mix($black, $secondary, 20%);
+    }
   }
   &.color-grey {
     background-color: $grey;
-    &:hover { background-color: mix($black, $grey, 20%); }
+    border-color: $grey;
+    &:hover {
+      background-color: mix($black, $grey, 20%);
+      border-color: mix($black, $grey, 20%);
+    }
+  }
+
+  // appearances
+  &.appearance-block { width: 100%; }
+  &.appearance-outline {
+    background-color: transparent;
+    color: $primary;
+    &:hover {
+      background-color: transparent;
+      color: mix($black, $secondary, 20%);
+    }
+
+    &.color-secondary {
+      color: $secondary;
+      &:hover { color: mix($black, $secondary, 20%); }
+    }
+    &.color-grey {
+      color: $grey;
+      &:hover { color: mix($black, $grey, 20%); }
+    }
   }
 }
 

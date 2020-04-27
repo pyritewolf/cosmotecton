@@ -3,7 +3,17 @@ import classNames from 'classnames';
 import styles from './styles.module.scss';
 
 
-function Button({children, type = 'button', appearance = "default", size = "md", color="primary", icon = null, disabled, onClick, hoverable}) {
+function Button({
+  children, // actual button content
+  disabled,
+  onClick,
+  type = 'button', // html button type
+  appearance = "default", // default, block, outline
+  size = "md", // md, sm
+  color="primary", // secondary, grey
+  icon = null, // a node for an icon
+  hoverable // enable hoverable-hidden text
+}) {
   return <button
     disabled={disabled}
     type={type}

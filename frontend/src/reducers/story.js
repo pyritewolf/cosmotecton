@@ -1,13 +1,11 @@
-import { LOG_IN } from "actions/auth";
+import {SET_STORY} from 'actions/story';
 
 const initialState = {};
 
 export default (state = initialState, action) => {
   switch(action.type) {
-     case LOG_IN:
-       return {...state, ...action.payload};
-     case 'LOG_OUT':
-       return {};
+     case SET_STORY:
+       return {...action.payload};
      default:
        return state;
    }

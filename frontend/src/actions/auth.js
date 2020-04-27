@@ -1,5 +1,5 @@
 import history from '../history';
-import { logIn as logInAPI, refreshToken as refreshTokenAPI } from 'api/auth';
+import { logIn as logInAPI } from 'api/auth';
 
 const LOG_IN = 'LOG_IN';
 
