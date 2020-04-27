@@ -17,6 +17,12 @@ $navbar-height: $gap-md * 4;
     & > * { @include col(6); }
 }
 
+.title .breadcrumbs {
+    font-size: $font-sm;
+    font-family: $sans-serif;
+    text-transform: uppercase;
+}
+
 .user {
     display: flex;
     justify-content: flex-end;

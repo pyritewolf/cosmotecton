@@ -10,7 +10,7 @@ export const createStory = (world) => async (dispatch, getState) => {
         owner: getState().auth.id,
     });
     dispatch({ type: SET_STORY, payload: story });
-    history.push(`${world.id}/story/${story.id}`)
+    history.push(`/${world.id}/story/${story.id}`)
 };
 
 export { SET_STORY };

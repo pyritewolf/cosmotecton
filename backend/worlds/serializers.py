@@ -13,7 +13,7 @@ class WorldSerializer(serializers.ModelSerializer):
 
 class StorySerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    world = serializers.PrimaryKeyRelatedField(source='world.name', queryset=World.objects.all())
+    world = serializers.PrimaryKeyRelatedField(queryset=World.objects.all())
 
     class Meta:
         model = Story

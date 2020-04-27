@@ -33,13 +33,13 @@ const WorldProvider = ( { children } ) => {
   }, initialState);
 
   useEffect(() => {
-    if (!(state.loading && state.world && state.world.id)) return;
+    if (!(state.world && state.world.id && state.loading)) return;
     const fetchWorldFromAPI = async () => {
       let world = await fetchWorld(state.world.id);
       dispatch({type: 'SET_WORLD', payload: world})
     };
     fetchWorldFromAPI();
-  })
+  }, [state.world, state.loading])
 
   return <Provider value={{ ...state, dispatch }}>{children}</Provider>;
 };

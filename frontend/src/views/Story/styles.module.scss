@@ -1,0 +1,15 @@
+@import '~variables';
+@import '~grid';
+
+.root {
+    @include grid;
+}
+
+.editor {
+    padding: $gap-md 0;
+    outline: none;
+    font-family: $sans-serif;
+    font-size: $font-lg;
+    border: none;
+    background: transparent;
+}

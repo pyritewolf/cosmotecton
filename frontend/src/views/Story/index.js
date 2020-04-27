@@ -1,22 +1,21 @@
-import React, {useState, Fragment} from 'react';
-import { connect, useSelector } from 'react-redux';
-import classNames from 'classnames';
+import React, { Fragment, useContext} from 'react';
 
 import { NavBar } from 'components/general';
-import { Button, Form, Input } from 'components/form';
+import { store } from 'contexts/world';
 
 import styles from './styles.module.scss';
 
-function Story({dispatch}) {
-
+function Story() {
+  const {world} = useContext(store);
   return (
     <Fragment>
-      <NavBar/>
-        <div className={styles.root}>
-            A new story
-        </div>
+      <NavBar title={world && world.name}/>
+      <div className={styles.root}>
+        <textarea className={styles.editor} autoFocus placeholder={'Once upon a time...'}>
+        </textarea>
+      </div>
     </Fragment>
   );
 }
 
-export default connect()(Story);
+export default Story;
